@@ -1,4 +1,4 @@
-# ManuSure — Manuscript Received-Date Extraction and Automated Quality Testing
+# Manuscript Received-Date Extraction and Automated Quality Testing
 
 ManuSure is an enterprise-grade, deterministic command-line application and automated quality assurance suite designed to extract the **received date** from academic manuscripts in Microsoft Word (`.docx`) format, normalize the dates to standard ISO 8601 (`YYYY-MM-DD`), and generate a clean, RFC 4180-compliant CSV report.
 
