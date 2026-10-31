@@ -1,11 +1,5 @@
 # ManuSure — Manuscript Received-Date Extraction and Automated Quality Testing
 
-[![Python Version](https://img.shields.io/badge/Python-3.12%20%7C%203.11+-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-Proprietary-red.svg)]()
-[![Automated Tests](https://img.shields.io/badge/Tests-74%20Passed%20(100%25)-brightgreen.svg)]()
-[![QA Verification Checks](https://img.shields.io/badge/QA%20Report-58%20Passed%20(100%25)-brightgreen.svg)]()
-[![Offline Deterministic](https://img.shields.io/badge/Engine-Deterministic%20Rule--Based%20NLP-orange.svg)]()
-
 ManuSure is an enterprise-grade, deterministic command-line application and automated quality assurance suite designed to extract the **received date** from academic manuscripts in Microsoft Word (`.docx`) format, normalize the dates to standard ISO 8601 (`YYYY-MM-DD`), and generate a clean, RFC 4180-compliant CSV report.
 
 The system is built entirely with Python standard libraries, `python-docx`, and `python-dateutil`. It operates **100% offline**, requiring **no LLMs, cloud APIs, external microservices, or machine learning models**.

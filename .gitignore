@@ -7,3 +7,5 @@ venv/
 ENV/
 *.tmp
 ~$*.docx
+output.csv
+input_files/
