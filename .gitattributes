@@ -1,0 +1,4 @@
+# Ensure run.sh keeps UNIX line endings on all operating systems
+run.sh text eol=lf
+*.sh text eol=lf
+*.py text eol=lf

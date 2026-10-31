@@ -1,0 +1,59 @@
+checks,input,expected,actual,result
+Explicit received date (Full month),Received: 15 January 2025,2025-01-15,2025-01-15,PASS
+Abbreviated month received date,Received: 15 Jan 2025,2025-01-15,2025-01-15,PASS
+Month Day Year format,"Received: January 15, 2025",2025-01-15,2025-01-15,PASS
+Month Day Year abbreviated,"Received: Jan 15, 2025",2025-01-15,2025-01-15,PASS
+Month Day Year with period,"Received: Jan. 15, 2025",2025-01-15,2025-01-15,PASS
+ISO received date (hyphens),Received: 2025-01-15,2025-01-15,2025-01-15,PASS
+ISO received date (slashes),Received: 2025/01/15,2025-01-15,2025-01-15,PASS
+ISO received date (dots),Received: 2025.01.15,2025-01-15,2025-01-15,PASS
+Numeric unambiguous DD/MM/YYYY (Day > 12),Received: 15/01/2025,2025-01-15,2025-01-15,PASS
+Numeric unambiguous DD-MM-YYYY (Day > 12),Received: 25-12-2024,2024-12-25,2024-12-25,PASS
+Numeric unambiguous identical day and month,Received: 05/05/2025,2025-05-05,2025-05-05,PASS
+Ambiguous numeric date (01/02/2025),Received: 01/02/2025,invalid,invalid,PASS
+Ambiguous numeric date (04/10/2024),Received: 04/10/2024,invalid,invalid,PASS
+Ordinal suffix (15th January 2025),Received: 15th January 2025,2025-01-15,2025-01-15,PASS
+Ordinal suffix (1st February 2025),Received: 1st February 2025,2025-02-01,2025-02-01,PASS
+Ordinal suffix (2nd March 2024),Received: 2nd March 2024,2024-03-02,2024-03-02,PASS
+Ordinal suffix (3rd April 2025),Received: 3rd April 2025,2025-04-03,2025-04-03,PASS
+Hyphenated DMY format,Received: 15-Jan-2025,2025-01-15,2025-01-15,PASS
+Invalid calendar date (Day 35),Received: 35 January 2025,invalid,invalid,PASS
+Invalid calendar date (31 April),Received: 31 April 2025,invalid,invalid,PASS
+Leap year valid date (29 Feb 2024),Received: 29 February 2024,2024-02-29,2024-02-29,PASS
+Non-leap year date (29 Feb 2023),Received: 29 February 2023,invalid,invalid,PASS
+Century leap year (29 Feb 2000),Received: 29 February 2000,2000-02-29,2000-02-29,PASS
+Non-leap century (29 Feb 1900),Received: 29 February 1900,invalid,invalid,PASS
+Unrecognized month name,Received: 15 UnknownMonth 2025,invalid,invalid,PASS
+Missing year in date,Received: 15 January,invalid,invalid,PASS
+Uppercase month text,Received: 15 JANUARY 2025,2025-01-15,2025-01-15,PASS
+Lowercase month text,Received: 15 january 2025,2025-01-15,2025-01-15,PASS
+Whitespace around date elements,Received:   15   January   2025  ,2025-01-15,2025-01-15,PASS
+Date received label,Date received: 15 Jan 2025,2025-01-15,2025-01-15,PASS
+Manuscript received label,Manuscript received: 15 January 2025,2025-01-15,2025-01-15,PASS
+Received on label,Received on 15 January 2025,2025-01-15,2025-01-15,PASS
+Date of receipt label,Date of receipt: 15 January 2025,2025-01-15,2025-01-15,PASS
+Abbreviated Rec. label,Rec.: 15 Jan 2025,2025-01-15,2025-01-15,PASS
+Narrative sentence received,This manuscript was received on 15 January 2025.,2025-01-15,2025-01-15,PASS
+Trailing received label,15 January 2025 (received),2025-01-15,2025-01-15,PASS
+Revised date only (No received),Revised: 20 February 2025,invalid,invalid,PASS
+Accepted date only (No received),Accepted: 10 March 2025,invalid,invalid,PASS
+Published online only (No received),Published online: 01 April 2025,invalid,invalid,PASS
+Submitted date only (No received),Submitted: 05 January 2025,invalid,invalid,PASS
+Received in revised form only,Received in revised form: 20 February 2025,invalid,invalid,PASS
+Ambiguous 'Date:' label,Date: 15 January 2025,invalid,invalid,PASS
+Unrelated citation date,Smith et al. (2020) on 14 March 2019,invalid,invalid,PASS
+Multiple roles in single document,Received: 15 Jan 2025; Revised: 20 Feb 2025; Accepted: 10 Mar 2025,2025-01-15,2025-01-15,PASS
+Conflicting received dates,Received: 15 January 2025 vs Received: 20 February 2025,invalid,invalid,PASS
+Identical received date mentions,Received: 15 January 2025 repeated twice,2025-01-15,2025-01-15,PASS
+Malformed received date with valid revised date,Received: 35 January 2025; Revised: 20 February 2025,invalid,invalid,PASS
+Empty DOCX document,Empty document without paragraphs,invalid,invalid,PASS
+Received date in document table,Table cell [Received | 15 January 2025],2025-01-15,2025-01-15,PASS
+Received date in section header,Section header with Received: 15 January 2025,2025-01-15,2025-01-15,PASS
+Received date in section footer,Section footer with Manuscript received on 15 Jan 2025,2025-01-15,2025-01-15,PASS
+Corrupted DOCX binary handling,Corrupted / non-zip binary docx,invalid,invalid,PASS
+Batch processing resilience,Batch containing corrupted docx among valid files,valid1:2025-01-10; bad:invalid; valid2:2025-01-20,valid1:2025-01-10; bad:invalid; valid2:2025-01-20,PASS
+Temporary file exclusion (~$*),Directory containing ~$temp_lock.docx,Excluded,Excluded,PASS
+CLI argument validation (Missing arguments),python main.py,Exit 1,Exit 1,PASS
+CLI directory validation (Nonexistent folder),python main.py <nonexistent_folder> <out.csv>,Exit 1,Exit 1,PASS
+Output CSV header format,Generated CSV header line,"file,received_date","file,received_date",PASS
+Deterministic alphabetical output ordering,Output CSV file row ordering,"bad.docx,valid1.docx,valid2.docx","bad.docx,valid1.docx,valid2.docx",PASS
